@@ -71,7 +71,7 @@ export const CompanyLogo = ({
   if (!activeLogo) {
     return (
       <div
-        className={`${className} grid place-items-center rounded-lg bg-slate-100 text-sm font-semibold text-slate-500`}
+        className={`${className} grid place-items-center rounded-lg bg-slate-100 text-sm font-semibold text-slate-500 dark:bg-slate-700 dark:text-slate-400`}
         aria-label={`${companyName} logo placeholder`}
       >
         {getInitials(companyName)}
@@ -81,12 +81,12 @@ export const CompanyLogo = ({
 
   return (
     <div
-      className={`${className} overflow-hidden rounded-lg bg-white ring-1 ring-slate-200`}
+      className={`${className} overflow-hidden rounded-lg bg-white ring-1 ring-slate-200 dark:bg-slate-800 dark:ring-slate-700`}
     >
       <img
         src={activeLogo}
         alt={`${companyName} logo`}
-        className="h-full w-full object-contain bg-white p-1.5"
+        className="h-full w-full object-contain bg-white dark:bg-slate-800 p-1.5"
         loading="lazy"
         referrerPolicy="no-referrer"
         onError={() => {

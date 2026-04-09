@@ -43,7 +43,7 @@ export const CalendarView = ({ events, onDelete }: Props) => {
 
   if (!events.length) {
     return (
-      <div className="rounded-lg border border-dashed bg-white p-8 text-center text-sm text-slate-500">
+      <div className="rounded-lg border border-dashed bg-white p-8 text-center text-sm text-slate-500 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-400">
         No events scheduled yet.
       </div>
     );
@@ -51,7 +51,7 @@ export const CalendarView = ({ events, onDelete }: Props) => {
 
   return (
     <div className="grid gap-5 lg:grid-cols-[360px_1fr]">
-      <div className="rounded-lg border bg-white p-4">
+      <div className="rounded-lg border bg-white p-4 dark:border-slate-700 dark:bg-slate-800">
         <DayPicker
           mode="single"
           selected={selectedDate}
@@ -69,11 +69,11 @@ export const CalendarView = ({ events, onDelete }: Props) => {
       </div>
 
       <div className="space-y-3">
-        <div className="rounded-lg border bg-white p-4">
-          <h3 className="text-sm font-semibold text-slate-800">
+        <div className="rounded-lg border bg-white p-4 dark:border-slate-700 dark:bg-slate-800">
+          <h3 className="text-sm font-semibold text-slate-800 dark:text-slate-100">
             Plans for {selectedDate.toLocaleDateString()}
           </h3>
-          <p className="mt-1 text-xs text-slate-500">
+          <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">
             {selectedDayEvents.length} event
             {selectedDayEvents.length === 1 ? "" : "s"} scheduled
           </p>
@@ -86,7 +86,7 @@ export const CalendarView = ({ events, onDelete }: Props) => {
             ))}
           </div>
         ) : (
-          <div className="rounded-lg border border-dashed bg-white p-8 text-center text-sm text-slate-500">
+          <div className="rounded-lg border border-dashed bg-white p-8 text-center text-sm text-slate-500 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-400">
             No plans for this day.
           </div>
         )}

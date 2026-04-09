@@ -14,8 +14,10 @@ export const CalendarPage = () => {
   return (
     <section className="space-y-5">
       <div>
-        <h2 className="text-2xl font-semibold text-slate-800">Calendar</h2>
-        <p className="text-sm text-slate-500">
+        <h2 className="text-2xl font-semibold text-slate-800 dark:text-slate-100">
+          Calendar
+        </h2>
+        <p className="text-sm text-slate-500 dark:text-slate-400">
           Plan calls, follow-ups, and outreach windows.
         </p>
       </div>
@@ -23,7 +25,7 @@ export const CalendarPage = () => {
       <EventForm loading={createEvent.isPending} onSubmit={handleCreate} />
 
       {isLoading ? (
-        <div className="rounded-lg border bg-white p-8 text-sm text-slate-500">
+        <div className="rounded-lg border bg-white p-8 text-sm text-slate-500 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-400">
           Loading events...
         </div>
       ) : (

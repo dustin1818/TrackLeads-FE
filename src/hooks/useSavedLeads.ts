@@ -6,6 +6,7 @@ import {
 } from "@tanstack/react-query";
 import api from "@/lib/api";
 import { toast } from "@/lib/toast";
+import { useNotificationStore } from "@/store/notificationStore";
 import type { SavedLead } from "@/lib/types";
 
 interface LeadsParams {
@@ -27,6 +28,7 @@ export const useSavedLeads = (params: LeadsParams = {}) => {
 
 export const useLeadActions = () => {
   const queryClient = useQueryClient();
+  const addNotification = useNotificationStore((s) => s.addNotification);
 
   const updateLead = useMutation({
     mutationFn: async ({
@@ -52,6 +54,11 @@ export const useLeadActions = () => {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["savedLeads"] });
       toast.success("Lead deleted", "The saved lead was removed successfully.");
+      addNotification({
+        type: "lead-deleted",
+        title: "Lead deleted",
+        description: "A saved lead was removed successfully.",
+      });
     },
     onError: (error) => {
       toast.error(

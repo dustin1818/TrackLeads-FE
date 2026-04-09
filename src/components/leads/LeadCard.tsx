@@ -57,17 +57,19 @@ export const LeadCard = ({ lead, onSave, onRemove }: Props) => {
             href={websiteUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-slate-900 hover:text-brand hover:underline"
+            className="text-slate-900 hover:text-brand hover:underline dark:text-slate-100"
           >
             {lead.companyName}
           </a>
         </CardTitle>
       </CardHeader>
       <CardContent className="space-y-3">
-        <p className="line-clamp-3 text-sm text-slate-600">
+        <p className="line-clamp-3 text-sm text-slate-600 dark:text-slate-400">
           {lead.description || "No description available."}
         </p>
-        <p className="text-sm text-slate-700">{lead.email}</p>
+        <p className="text-sm text-slate-700 dark:text-slate-300">
+          {lead.email}
+        </p>
       </CardContent>
       <CardFooter className="mt-auto">
         {lead.isSaved ? (

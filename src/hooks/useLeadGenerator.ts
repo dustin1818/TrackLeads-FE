@@ -3,12 +3,14 @@ import api from "@/lib/api";
 import { toast } from "@/lib/toast";
 import type { GeneratedLead, RemovedLead, SavedLead } from "@/lib/types";
 import { useLeadStore } from "@/store/leadStore";
+import { useNotificationStore } from "@/store/notificationStore";
 
 export const useLeadGenerator = () => {
   const queryClient = useQueryClient();
   const setGeneratedLeads = useLeadStore((s) => s.setGeneratedLeads);
   const markLeadSaved = useLeadStore((s) => s.markLeadSaved);
   const removeGeneratedLead = useLeadStore((s) => s.removeGeneratedLead);
+  const addNotification = useNotificationStore((s) => s.addNotification);
 
   const generate = useMutation({
     mutationFn: async (websiteUrl: string) => {
@@ -37,6 +39,11 @@ export const useLeadGenerator = () => {
         "Lead saved",
         `${saved.companyName} was added to your saved leads.`,
       );
+      addNotification({
+        type: "lead-saved",
+        title: "Lead saved",
+        description: `${saved.companyName} was added to your saved leads.`,
+      });
     },
     onError: (error) => {
       toast.error("Failed to save lead", error, "The lead could not be saved.");
@@ -55,6 +62,11 @@ export const useLeadGenerator = () => {
         "Lead removed",
         `${removed.companyName} was removed from the current results.`,
       );
+      addNotification({
+        type: "lead-removed",
+        title: "Lead removed",
+        description: `${removed.companyName} was removed from the current results.`,
+      });
     },
     onError: (error) => {
       toast.error(

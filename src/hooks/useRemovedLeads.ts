@@ -6,6 +6,7 @@ import {
 } from "@tanstack/react-query";
 import api from "@/lib/api";
 import { toast } from "@/lib/toast";
+import { useNotificationStore } from "@/store/notificationStore";
 import type { RemovedLead } from "@/lib/types";
 
 interface RemovedLeadsParams {
@@ -28,6 +29,7 @@ export const useRemovedLeads = (params: RemovedLeadsParams = {}) => {
 
 export const useRemovedLeadActions = () => {
   const queryClient = useQueryClient();
+  const addNotification = useNotificationStore.getState().addNotification;
 
   const restoreLead = useMutation({
     mutationFn: async (id: string) => {
@@ -40,6 +42,11 @@ export const useRemovedLeadActions = () => {
         "Lead allowed again",
         "The lead will appear in future generation results again.",
       );
+      addNotification({
+        type: "lead-removed",
+        title: "Lead allowed again",
+        description: "The lead will appear in future generation results again.",
+      });
     },
     onError: (error) => {
       toast.error(
@@ -61,6 +68,11 @@ export const useRemovedLeadActions = () => {
         "Leads allowed again",
         `${ids.length} removed lead${ids.length === 1 ? "" : "s"} restored successfully.`,
       );
+      addNotification({
+        type: "lead-removed",
+        title: "Leads allowed again",
+        description: `${ids.length} removed lead${ids.length === 1 ? "" : "s"} restored successfully.`,
+      });
     },
     onError: (error) => {
       toast.error(

@@ -14,8 +14,8 @@ export const Toaster = () => {
           className={cn(
             "pointer-events-auto rounded-xl border p-4 shadow-lg backdrop-blur-sm transition-all animate-in slide-in-from-top-2",
             toast.variant === "success"
-              ? "border-emerald-200 bg-white/95"
-              : "border-red-200 bg-white/95",
+              ? "border-emerald-200 bg-white/95 dark:border-emerald-800 dark:bg-slate-800/95"
+              : "border-red-200 bg-white/95 dark:border-red-800 dark:bg-slate-800/95",
           )}
           role="status"
           aria-live="polite"
@@ -33,14 +33,16 @@ export const Toaster = () => {
                 {toast.title}
               </p>
               {toast.description ? (
-                <p className="text-sm text-slate-600">{toast.description}</p>
+                <p className="text-sm text-slate-600 dark:text-slate-400">
+                  {toast.description}
+                </p>
               ) : null}
             </div>
 
             <button
               type="button"
               onClick={() => dismissToast(toast.id)}
-              className="rounded-md p-1 text-slate-400 transition hover:bg-slate-100 hover:text-slate-700"
+              className="rounded-md p-1 text-slate-400 transition hover:bg-slate-100 hover:text-slate-700 dark:hover:bg-slate-700 dark:hover:text-slate-300"
               aria-label="Dismiss notification"
             >
               <X className="h-4 w-4" />

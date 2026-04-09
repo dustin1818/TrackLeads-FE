@@ -1,6 +1,7 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import api from "@/lib/api";
 import { toast } from "@/lib/toast";
+import { useNotificationStore } from "@/store/notificationStore";
 import type { Todo } from "@/lib/types";
 
 interface TodoFilters {
@@ -28,6 +29,7 @@ export const useTodos = (filters: TodoFilters = {}) => {
 
 export const useTodoActions = () => {
   const queryClient = useQueryClient();
+  const addNotification = useNotificationStore((s) => s.addNotification);
 
   const createTodo = useMutation({
     mutationFn: async (payload: Partial<Todo>) => {
@@ -37,6 +39,11 @@ export const useTodoActions = () => {
     onSuccess: (todo) => {
       queryClient.invalidateQueries({ queryKey: ["todos"] });
       toast.success("Todo added", `${todo.title} was added to your list.`);
+      addNotification({
+        type: "todo-created",
+        title: "Todo added",
+        description: `${todo.title} was added to your list.`,
+      });
     },
     onError: (error) => {
       toast.error(
@@ -58,7 +65,16 @@ export const useTodoActions = () => {
       const { data } = await api.put<Todo>(`/todos/${id}`, payload);
       return data;
     },
-    onSuccess: () => queryClient.invalidateQueries({ queryKey: ["todos"] }),
+    onSuccess: (todo) => {
+      queryClient.invalidateQueries({ queryKey: ["todos"] });
+      if (todo.isCompleted) {
+        addNotification({
+          type: "todo-completed",
+          title: "Todo completed",
+          description: `${todo.title} was marked as complete.`,
+        });
+      }
+    },
   });
 
   const deleteTodo = useMutation({
@@ -69,6 +85,11 @@ export const useTodoActions = () => {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["todos"] });
       toast.success("Todo deleted", "The todo was removed successfully.");
+      addNotification({
+        type: "todo-deleted",
+        title: "Todo deleted",
+        description: "A todo was removed successfully.",
+      });
     },
     onError: (error) => {
       toast.error(

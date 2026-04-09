@@ -184,13 +184,13 @@ export const RegisterPage = () => {
       <div className="flex h-screen w-full overflow-hidden">
         <AuthHeroPanel note="Your account keeps saved leads, tasks, and events separated from other users while email verification protects access to the workspace." />
 
-        <div className="flex w-full flex-col items-center justify-center bg-[linear-gradient(135deg,_rgba(230,247,243,0.72)_0%,_#ffffff_40%,_rgba(230,247,243,0.38)_100%)] px-8 md:w-1/2 md:px-16">
+        <div className="flex w-full flex-col items-center justify-center bg-[linear-gradient(135deg,_rgba(230,247,243,0.72)_0%,_#ffffff_40%,_rgba(230,247,243,0.38)_100%)] px-8 dark:bg-[linear-gradient(135deg,_rgba(30,41,59,1)_0%,_rgba(15,23,42,1)_40%,_rgba(30,41,59,1)_100%)] md:w-1/2 md:px-16">
           <div className="mb-10 flex items-center gap-3">
             <div className="grid h-11 w-11 place-items-center rounded-md bg-brand text-white">
               TL
             </div>
             <h1 className="text-2xl font-semibold">
-              <span className="text-slate-800">TRACK</span>
+              <span className="text-slate-800 dark:text-slate-100">TRACK</span>
               <span className="text-brand">LEADS</span>
             </h1>
           </div>
@@ -271,8 +271,7 @@ export const RegisterPage = () => {
               {registerUser.isPending ? "Sending code..." : "Create Account"}
             </Button>
 
-            <p className="text-center text-sm text-slate-500">
-              Already have an account?{" "}
+            <p className="text-center text-sm text-slate-500 dark:text-slate-400">
               <Link
                 to="/login"
                 className="font-medium text-brand hover:underline"
@@ -286,7 +285,7 @@ export const RegisterPage = () => {
 
       {isOtpOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/40 px-4 backdrop-blur-md">
-          <div className="relative w-full max-w-md overflow-hidden rounded-[32px] border border-brand/15 bg-[radial-gradient(circle_at_top,_rgba(60,184,154,0.18),_transparent_38%),linear-gradient(180deg,_#ffffff_0%,_#f7fffc_100%)] p-8 shadow-[0_35px_120px_rgba(46,158,131,0.22)] sm:p-10">
+          <div className="relative w-full max-w-md overflow-hidden rounded-[32px] border border-brand/15 bg-[radial-gradient(circle_at_top,_rgba(60,184,154,0.18),_transparent_38%),linear-gradient(180deg,_#ffffff_0%,_#f7fffc_100%)] p-8 shadow-[0_35px_120px_rgba(46,158,131,0.22)] dark:bg-[radial-gradient(circle_at_top,_rgba(60,184,154,0.12),_transparent_38%),linear-gradient(180deg,_#1e293b_0%,_#0f172a_100%)] dark:border-brand/25 sm:p-10">
             <div className="absolute inset-x-10 top-0 h-1 rounded-full bg-gradient-to-r from-brand/40 via-brand to-brand/40" />
             <div className="pointer-events-none absolute -right-16 -top-16 h-40 w-40 rounded-full bg-brand/10 blur-3xl" />
             <div className="pointer-events-none absolute -bottom-20 -left-16 h-40 w-40 rounded-full bg-brand/10 blur-3xl" />
@@ -294,7 +293,7 @@ export const RegisterPage = () => {
             <button
               type="button"
               onClick={closeOtpModal}
-              className="mb-8 inline-flex items-center gap-2 text-sm font-medium text-slate-500 transition hover:text-brand"
+              className="mb-8 inline-flex items-center gap-2 text-sm font-medium text-slate-500 transition hover:text-brand dark:text-slate-400"
             >
               <ArrowLeft className="h-4 w-4" />
               Back to sign in
@@ -319,12 +318,12 @@ export const RegisterPage = () => {
                   {deliveryMode === "resend" ? "Resend Active" : "Preview Mode"}
                 </span>
               </div>
-              <h2 className="mt-3 text-4xl font-black tracking-tight text-slate-900">
+              <h2 className="mt-3 text-4xl font-black tracking-tight text-slate-900 dark:text-slate-100">
                 Verify your email
               </h2>
-              <p className="mx-auto mt-4 max-w-sm text-base leading-7 text-slate-500">
+              <p className="mx-auto mt-4 max-w-sm text-base leading-7 text-slate-500 dark:text-slate-400">
                 We&apos;ve sent a 6-digit code to{" "}
-                <span className="font-semibold text-slate-900">
+                <span className="font-semibold text-slate-900 dark:text-slate-100">
                   {registrationEmail}
                 </span>
               </p>
@@ -346,14 +345,12 @@ export const RegisterPage = () => {
                   }
                   onKeyDown={(event) => handleOtpKeyDown(index, event)}
                   onPaste={handleOtpPaste}
-                  className="h-14 w-12 rounded-2xl border-brand/20 bg-white/90 px-0 text-center text-2xl font-semibold text-slate-900 shadow-[0_8px_20px_rgba(15,23,42,0.06)] focus-visible:border-brand focus-visible:ring-brand/30 sm:h-16 sm:w-14"
+                  className="h-14 w-12 rounded-2xl border-brand/20 bg-white/90 px-0 text-center text-2xl font-semibold text-slate-900 shadow-[0_8px_20px_rgba(15,23,42,0.06)] focus-visible:border-brand focus-visible:ring-brand/30 dark:bg-slate-800/90 dark:text-slate-100 sm:h-16 sm:w-14"
                 />
               ))}
             </div>
 
-            <p className="mt-4 text-center text-sm text-slate-500">
-              Enter the verification code sent to your email
-            </p>
+            <p className="mt-4 text-center text-sm text-slate-500 dark:text-slate-400"></p>
 
             {otpInfoMessage && (
               <div className="mt-5 rounded-2xl border border-brand/15 bg-brand-light/70 px-4 py-3 text-center text-sm text-brand-dark">
@@ -394,8 +391,7 @@ export const RegisterPage = () => {
               {verifyOtp.isPending ? "Verifying..." : "Verify email"}
             </Button>
 
-            <p className="mt-5 text-center text-sm text-slate-500">
-              Didn&apos;t receive the code?{" "}
+            <p className="mt-5 text-center text-sm text-slate-500 dark:text-slate-400">
               <button
                 type="button"
                 onClick={handleResendOtp}

@@ -19,10 +19,10 @@ export const GenerateLeadsPage = () => {
   return (
     <section className="space-y-5">
       <div>
-        <h2 className="text-2xl font-semibold text-slate-800">
+        <h2 className="text-2xl font-semibold text-slate-800 dark:text-slate-100">
           Generate Leads
         </h2>
-        <p className="text-sm text-slate-500">
+        <p className="text-sm text-slate-500 dark:text-slate-400">
           Find 20 companies from your website domain.
         </p>
       </div>

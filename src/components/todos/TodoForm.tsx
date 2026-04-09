@@ -32,7 +32,7 @@ export const TodoForm = ({ loading, onSubmit }: Props) => {
         await onSubmit(values);
         reset({ title: "", description: "", priority: "Medium", dueDate: "" });
       })}
-      className="grid gap-3 rounded-lg border bg-white p-4 md:grid-cols-4"
+      className="grid gap-3 rounded-lg border bg-white p-4 dark:border-slate-700 dark:bg-slate-800 md:grid-cols-4"
     >
       <div className="md:col-span-2">
         <Label htmlFor="todo-title">Title</Label>

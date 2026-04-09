@@ -35,7 +35,7 @@ export const RemovedLeadTable = ({
 
   return (
     <div className="space-y-4">
-      <div className="flex flex-wrap items-center gap-2 rounded-lg border bg-white p-3">
+      <div className="flex flex-wrap items-center gap-2 rounded-lg border bg-white p-3 dark:border-slate-700 dark:bg-slate-800">
         <Button
           variant="outline"
           size="sm"
@@ -56,7 +56,7 @@ export const RemovedLeadTable = ({
         </Button>
       </div>
 
-      <div className="grid gap-3 rounded-lg border bg-white p-4 md:grid-cols-2">
+      <div className="grid gap-3 rounded-lg border bg-white p-4 dark:border-slate-700 dark:bg-slate-800 md:grid-cols-2">
         <Input
           value={search}
           onChange={(e) => onSearchChange(e.target.value)}
@@ -73,9 +73,9 @@ export const RemovedLeadTable = ({
         </select>
       </div>
 
-      <div className="overflow-x-auto rounded-lg border bg-white">
+      <div className="overflow-x-auto rounded-lg border bg-white dark:border-slate-700 dark:bg-slate-800">
         <table className="w-full min-w-[760px] text-left text-sm">
-          <thead className="border-b bg-slate-50 text-slate-600">
+          <thead className="border-b bg-slate-50 text-slate-600 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-400">
             <tr>
               <th className="p-3">
                 <input
@@ -92,7 +92,7 @@ export const RemovedLeadTable = ({
           </thead>
           <tbody>
             {leads.map((lead) => (
-              <tr key={lead._id} className="border-b">
+              <tr key={lead._id} className="border-b dark:border-slate-700">
                 <td className="p-3">
                   <input
                     type="checkbox"
@@ -110,13 +110,15 @@ export const RemovedLeadTable = ({
                     }
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="font-medium text-slate-900 hover:text-brand hover:underline"
+                    className="font-medium text-slate-900 hover:text-brand hover:underline dark:text-slate-100"
                   >
                     {lead.companyName}
                   </a>
-                  <p className="text-xs text-slate-500">{lead.domain || "-"}</p>
+                  <p className="text-xs text-slate-500 dark:text-slate-400">
+                    {lead.domain || "-"}
+                  </p>
                 </td>
-                <td className="p-3">{lead.email}</td>
+                <td className="p-3 dark:text-slate-300">{lead.email}</td>
                 <td className="p-3">
                   <Button size="sm" onClick={() => onRestore(lead._id)}>
                     Allow Again
@@ -128,7 +130,7 @@ export const RemovedLeadTable = ({
         </table>
 
         {!leads.length && (
-          <p className="p-8 text-center text-sm text-slate-500">
+          <p className="p-8 text-center text-sm text-slate-500 dark:text-slate-400">
             No removed leads match this filter.
           </p>
         )}

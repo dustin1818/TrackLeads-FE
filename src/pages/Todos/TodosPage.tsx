@@ -28,15 +28,17 @@ export const TodosPage = () => {
   return (
     <section className="space-y-5">
       <div>
-        <h2 className="text-2xl font-semibold text-slate-800">Todos</h2>
-        <p className="text-sm text-slate-500">
+        <h2 className="text-2xl font-semibold text-slate-800 dark:text-slate-100">
+          Todos
+        </h2>
+        <p className="text-sm text-slate-500 dark:text-slate-400">
           Track outreach tasks by status and priority.
         </p>
       </div>
 
       <TodoForm loading={createTodo.isPending} onSubmit={handleCreate} />
 
-      <div className="flex flex-wrap gap-3 rounded-lg border bg-white p-4">
+      <div className="flex flex-wrap gap-3 rounded-lg border bg-white p-4 dark:border-slate-700 dark:bg-slate-800">
         <select
           className="h-10 rounded-md border border-input bg-background px-3 text-sm"
           value={status}
@@ -64,7 +66,7 @@ export const TodosPage = () => {
       </div>
 
       {isLoading ? (
-        <div className="rounded-lg border bg-white p-8 text-sm text-slate-500">
+        <div className="rounded-lg border bg-white p-8 text-sm text-slate-500 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-400">
           Loading todos...
         </div>
       ) : (

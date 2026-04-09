@@ -42,7 +42,7 @@ export const EventForm = ({ loading, onSubmit }: Props) => {
           color: "#3CB89A",
         });
       })}
-      className="grid gap-3 rounded-lg border bg-white p-4 md:grid-cols-2"
+      className="grid gap-3 rounded-lg border bg-white p-4 dark:border-slate-700 dark:bg-slate-800 md:grid-cols-2"
     >
       <div>
         <Label htmlFor="event-title">Title</Label>

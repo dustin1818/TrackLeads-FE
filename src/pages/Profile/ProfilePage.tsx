@@ -55,15 +55,17 @@ export const ProfilePage = () => {
   return (
     <section className="space-y-5">
       <div>
-        <h2 className="text-2xl font-semibold text-slate-800">Profile</h2>
-        <p className="text-sm text-slate-500">
+        <h2 className="text-2xl font-semibold text-slate-800 dark:text-slate-100">
+          Profile
+        </h2>
+        <p className="text-sm text-slate-500 dark:text-slate-400">
           Update your personal account details.
         </p>
       </div>
 
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="max-w-xl space-y-4 rounded-lg border bg-white p-5"
+        className="max-w-xl space-y-4 rounded-lg border bg-white p-5 dark:border-slate-700 dark:bg-slate-800"
       >
         <div>
           <Label htmlFor="profile-name">Name</Label>

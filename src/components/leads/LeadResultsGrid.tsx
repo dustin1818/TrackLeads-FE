@@ -27,7 +27,7 @@ export const LeadResultsGrid = ({
 
   if (!leads.length) {
     return (
-      <div className="rounded-lg border border-dashed bg-white p-10 text-center text-sm text-slate-500">
+      <div className="rounded-lg border border-dashed bg-white p-10 text-center text-sm text-slate-500 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-400">
         No generated leads yet. Submit a website URL to start.
       </div>
     );

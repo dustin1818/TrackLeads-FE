@@ -8,6 +8,7 @@ import type {
   VerifyOtpResponse,
 } from "@/lib/types";
 import { useAuthStore } from "@/store/authStore";
+import { useNotificationStore } from "@/store/notificationStore";
 
 interface AuthPayload {
   email: string;
@@ -37,6 +38,7 @@ interface UpdateProfilePayload {
 export const useAuth = () => {
   const setAuth = useAuthStore((s) => s.setAuth);
   const clearAuth = useAuthStore((s) => s.clearAuth);
+  const addNotification = useNotificationStore((s) => s.addNotification);
 
   const login = useMutation({
     mutationFn: async (payload: AuthPayload) => {
@@ -105,6 +107,11 @@ export const useAuth = () => {
         "Profile updated",
         "Your account details were saved successfully.",
       );
+      addNotification({
+        type: "profile-updated",
+        title: "Profile updated",
+        description: "Your account details were saved successfully.",
+      });
     },
     onError: (error) => {
       toast.error(

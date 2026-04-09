@@ -29,13 +29,13 @@ export const LoginPage = () => {
     <div className="flex h-screen w-full overflow-hidden">
       <AuthHeroPanel note="Each account has isolated leads, todos, and calendar events. Use your workspace to keep outreach data clean, separated, and ready to act on." />
 
-      <div className="flex w-full flex-col items-center justify-center bg-[linear-gradient(135deg,_rgba(230,247,243,0.72)_0%,_#ffffff_40%,_rgba(230,247,243,0.38)_100%)] px-8 md:w-1/2 md:px-16">
+      <div className="flex w-full flex-col items-center justify-center bg-[linear-gradient(135deg,_rgba(230,247,243,0.72)_0%,_#ffffff_40%,_rgba(230,247,243,0.38)_100%)] px-8 dark:bg-[linear-gradient(135deg,_rgba(30,41,59,1)_0%,_rgba(15,23,42,1)_40%,_rgba(30,41,59,1)_100%)] md:w-1/2 md:px-16">
         <div className="mb-10 flex items-center gap-3">
           <div className="grid h-11 w-11 place-items-center rounded-md bg-brand text-white">
             TL
           </div>
           <h1 className="text-2xl font-semibold">
-            <span className="text-slate-800">TRACK</span>
+            <span className="text-slate-800 dark:text-slate-100">TRACK</span>
             <span className="text-brand">LEADS</span>
           </h1>
         </div>
@@ -87,7 +87,7 @@ export const LoginPage = () => {
             {login.isPending ? "Signing in..." : "Go to Dashboard"}
           </Button>
 
-          <p className="text-center text-sm text-slate-500">
+          <p className="text-center text-sm text-slate-500 dark:text-slate-400">
             Don&apos;t have an account?{" "}
             <Link
               to="/register"

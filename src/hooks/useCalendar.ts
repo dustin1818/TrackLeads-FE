@@ -1,6 +1,7 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import api from "@/lib/api";
 import { toast } from "@/lib/toast";
+import { useNotificationStore } from "@/store/notificationStore";
 import type { CalendarEvent } from "@/lib/types";
 
 export const useCalendarEvents = () => {
@@ -15,6 +16,7 @@ export const useCalendarEvents = () => {
 
 export const useCalendarActions = () => {
   const queryClient = useQueryClient();
+  const addNotification = useNotificationStore((s) => s.addNotification);
 
   const createEvent = useMutation({
     mutationFn: async (payload: Partial<CalendarEvent>) => {
@@ -27,6 +29,11 @@ export const useCalendarActions = () => {
         "Calendar event added",
         `${event.title} was added to your calendar.`,
       );
+      addNotification({
+        type: "calendar-created",
+        title: "Calendar event added",
+        description: `${event.title} was added to your calendar.`,
+      });
     },
     onError: (error) => {
       toast.error(
@@ -56,8 +63,14 @@ export const useCalendarActions = () => {
     mutationFn: async (id: string) => {
       await api.delete(`/calendar/${id}`);
     },
-    onSuccess: () =>
-      queryClient.invalidateQueries({ queryKey: ["calendarEvents"] }),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["calendarEvents"] });
+      addNotification({
+        type: "calendar-deleted",
+        title: "Calendar event deleted",
+        description: "A calendar event was removed.",
+      });
+    },
   });
 
   return { createEvent, updateEvent, deleteEvent };
