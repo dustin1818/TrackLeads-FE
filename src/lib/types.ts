@@ -4,6 +4,7 @@ export interface User {
   name: string;
   email: string;
   avatar?: string;
+  isVerified?: boolean;
   createdAt?: string;
 }
 
@@ -11,7 +12,19 @@ export interface AuthResponse extends User {
   token: string;
 }
 
-// ─── Leads ───────────────────────────────────────────
+export interface RegisterOtpResponse {
+  message: string;
+  email: string;
+  previewUrl?: string;
+  deliveryMode?: "resend" | "preview";
+}
+
+export interface VerifyOtpResponse {
+  message: string;
+  user: User;
+  token: string;
+}
+
 export type LeadStatus =
   | "New"
   | "Contacted"
@@ -61,7 +74,6 @@ export interface RemovedLead {
   updatedAt: string;
 }
 
-// ─── Todos ───────────────────────────────────────────
 export type TodoPriority = "Low" | "Medium" | "High";
 
 export interface Todo {
@@ -77,7 +89,6 @@ export interface Todo {
   updatedAt: string;
 }
 
-// ─── Calendar ────────────────────────────────────────
 export interface CalendarEvent {
   _id: string;
   user: string;
