@@ -182,7 +182,7 @@ export const RegisterPage = () => {
   return (
     <>
       <div className="flex h-screen w-full overflow-hidden">
-        <AuthHeroPanel note="Your account keeps saved leads, tasks, and events separated from other users while email verification protects access to the workspace." />
+        <AuthHeroPanel />
 
         <div className="flex w-full flex-col items-center justify-center bg-[linear-gradient(135deg,_rgba(230,247,243,0.72)_0%,_#ffffff_40%,_rgba(230,247,243,0.38)_100%)] px-8 dark:bg-[linear-gradient(135deg,_rgba(30,41,59,1)_0%,_rgba(15,23,42,1)_40%,_rgba(30,41,59,1)_100%)] md:w-1/2 md:px-16">
           <div className="mb-10 flex items-center gap-3">
