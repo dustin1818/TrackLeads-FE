@@ -5,6 +5,7 @@ import {
   useQueryClient,
 } from "@tanstack/react-query";
 import api from "@/lib/api";
+import { toast } from "@/lib/toast";
 import type { RemovedLead } from "@/lib/types";
 
 interface RemovedLeadsParams {
@@ -31,18 +32,42 @@ export const useRemovedLeadActions = () => {
   const restoreLead = useMutation({
     mutationFn: async (id: string) => {
       await api.delete(`/leads/removed/${id}`);
+      return id;
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["removedLeads"] });
+      toast.success(
+        "Lead allowed again",
+        "The lead will appear in future generation results again.",
+      );
+    },
+    onError: (error) => {
+      toast.error(
+        "Failed to allow lead again",
+        error,
+        "The removed lead could not be restored.",
+      );
     },
   });
 
   const restoreManyLeads = useMutation({
     mutationFn: async (ids: string[]) => {
       await Promise.all(ids.map((id) => api.delete(`/leads/removed/${id}`)));
+      return ids;
     },
-    onSuccess: () => {
+    onSuccess: (ids) => {
       queryClient.invalidateQueries({ queryKey: ["removedLeads"] });
+      toast.success(
+        "Leads allowed again",
+        `${ids.length} removed lead${ids.length === 1 ? "" : "s"} restored successfully.`,
+      );
+    },
+    onError: (error) => {
+      toast.error(
+        "Failed to allow leads again",
+        error,
+        "The selected removed leads could not be restored.",
+      );
     },
   });
 

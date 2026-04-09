@@ -4,7 +4,13 @@ import "react-day-picker/dist/style.css";
 import type { CalendarEvent } from "@/lib/types";
 import { EventCard } from "@/components/calendar/EventCard";
 
-const toDateKey = (value: Date) => value.toISOString().split("T")[0];
+const toDateKey = (value: Date) => {
+  const year = value.getFullYear();
+  const month = String(value.getMonth() + 1).padStart(2, "0");
+  const day = String(value.getDate()).padStart(2, "0");
+
+  return `${year}-${month}-${day}`;
+};
 
 interface Props {
   events: CalendarEvent[];

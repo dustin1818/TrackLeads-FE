@@ -6,6 +6,7 @@ import { ArrowLeft, ShieldCheck } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
+import { AuthHeroPanel } from "@/components/layout/AuthHeroPanel";
 import {
   registerSchema,
   type RegisterFormData,
@@ -181,20 +182,9 @@ export const RegisterPage = () => {
   return (
     <>
       <div className="flex h-screen w-full overflow-hidden">
-        <div className="relative hidden w-1/2 flex-col items-center justify-center gap-8 bg-[#3CB89A] p-12 md:flex">
-          <div className="text-5xl font-black tracking-[0.4em] text-white animate-pulse">
-            /////
-          </div>
-          <div className="max-w-sm rounded-xl bg-black/10 p-6 text-white">
-            <p className="mb-2 font-bold">NOTE:</p>
-            <p className="text-sm leading-relaxed">
-              Your account keeps saved leads, tasks, and events separated from
-              other users.
-            </p>
-          </div>
-        </div>
+        <AuthHeroPanel note="Your account keeps saved leads, tasks, and events separated from other users while email verification protects access to the workspace." />
 
-        <div className="flex w-full flex-col items-center justify-center bg-gradient-to-r from-emerald-50/50 to-white px-8 md:w-1/2 md:px-16">
+        <div className="flex w-full flex-col items-center justify-center bg-[linear-gradient(135deg,_rgba(230,247,243,0.72)_0%,_#ffffff_40%,_rgba(230,247,243,0.38)_100%)] px-8 md:w-1/2 md:px-16">
           <div className="mb-10 flex items-center gap-3">
             <div className="grid h-11 w-11 place-items-center rounded-md bg-brand text-white">
               TL

@@ -1,5 +1,6 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import api from "@/lib/api";
+import { toast } from "@/lib/toast";
 import type { GeneratedLead, RemovedLead, SavedLead } from "@/lib/types";
 import { useLeadStore } from "@/store/leadStore";
 
@@ -32,6 +33,13 @@ export const useLeadGenerator = () => {
     onSuccess: (saved) => {
       markLeadSaved(saved.email);
       queryClient.invalidateQueries({ queryKey: ["savedLeads"] });
+      toast.success(
+        "Lead saved",
+        `${saved.companyName} was added to your saved leads.`,
+      );
+    },
+    onError: (error) => {
+      toast.error("Failed to save lead", error, "The lead could not be saved.");
     },
   });
 
@@ -43,6 +51,17 @@ export const useLeadGenerator = () => {
     onSuccess: (removed) => {
       removeGeneratedLead(removed.email);
       queryClient.invalidateQueries({ queryKey: ["removedLeads"] });
+      toast.success(
+        "Lead removed",
+        `${removed.companyName} was removed from the current results.`,
+      );
+    },
+    onError: (error) => {
+      toast.error(
+        "Failed to remove lead",
+        error,
+        "The lead could not be removed.",
+      );
     },
   });
 

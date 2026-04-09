@@ -1,5 +1,6 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
 import api from "@/lib/api";
+import { toast } from "@/lib/toast";
 import type {
   AuthResponse,
   RegisterOtpResponse,
@@ -100,6 +101,17 @@ export const useAuth = () => {
       if (token) {
         setAuth({ user, token });
       }
+      toast.success(
+        "Profile updated",
+        "Your account details were saved successfully.",
+      );
+    },
+    onError: (error) => {
+      toast.error(
+        "Failed to update profile",
+        error,
+        "Your profile changes could not be saved.",
+      );
     },
   });
 

@@ -8,6 +8,7 @@ import {
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { CompanyLogo } from "@/components/leads/CompanyLogo";
 import type { GeneratedLead } from "@/lib/types";
 
 interface Props {
@@ -46,17 +47,11 @@ export const LeadCard = ({ lead, onSave, onRemove }: Props) => {
   return (
     <Card className="flex h-full flex-col">
       <CardHeader className="space-y-3">
-        <div className="h-12 w-12 overflow-hidden rounded bg-slate-100">
-          <img
-            src={lead.logoUrl}
-            alt={lead.companyName}
-            className="h-full w-full object-cover"
-            onError={(e) => {
-              (e.target as HTMLImageElement).src =
-                "https://placehold.co/80x80/e2e8f0/475569?text=Logo";
-            }}
-          />
-        </div>
+        <CompanyLogo
+          companyName={lead.companyName}
+          domain={lead.domain}
+          logoUrl={lead.logoUrl}
+        />
         <CardTitle className="text-lg">
           <a
             href={websiteUrl}
