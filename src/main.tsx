@@ -4,7 +4,7 @@ import { BrowserRouter } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import App from "./App";
 import { Toaster } from "@/components/ui/toaster";
-import "@/store/themeStore"; // initialize dark mode on load
+import "@/store/themeStore";
 import "./index.css";
 
 const queryClient = new QueryClient({

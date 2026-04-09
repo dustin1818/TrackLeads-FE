@@ -12,10 +12,14 @@ import { useAuthStore } from "@/store/authStore";
 const navItems = [
   { to: "/dashboard", label: "Dashboard" },
   { to: "/leads/generate", label: "Generate Leads" },
-  { to: "/leads/saved", label: "Saved Leads", countKey: "savedLeads" },
-  { to: "/leads/removed", label: "Removed Leads", countKey: "removedLeads" },
-  { to: "/todos", label: "Todos", countKey: "todos" },
-  { to: "/calendar", label: "Calendar", countKey: "calendarEvents" },
+  { to: "/leads/saved", label: "Saved Leads", countKey: "savedLeads" as const },
+  {
+    to: "/leads/removed",
+    label: "Removed Leads",
+    countKey: "removedLeads" as const,
+  },
+  { to: "/todos", label: "Todos", countKey: "todos" as const },
+  { to: "/calendar", label: "Calendar", countKey: "calendarEvents" as const },
   { to: "/profile", label: "Profile" },
 ];
 
